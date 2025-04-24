@@ -1,0 +1,65 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": [
+                "codecommit:GitPush",
+                "codecommit:DeleteBranch",
+                "codecommit:PutFile",
+                "codecommit:MergeBranchesByFastForward",
+                "codecommit:MergeBranchesBySquash",
+                "codecommit:MergeBranchesByThreeWay",
+                "codecommit:MergePullRequestByFastForward",
+                "codecommit:MergePullRequestBySquash",
+                "codecommit:MergePullRequestByThreeWay",
+                "codecommit:OverridePullRequestApprovalRules"
+            ],
+            "Resource": [
+                "arn:aws:codecommit:ap-south-1:411571901235:TestRepo",
+                "arn:aws:codecommit:ap-south-1:411571901235:yaantrac_device_communication_server",
+                "arn:aws:codecommit:ap-south-1:411571901235:Yaantrac_Driver_Mobile_App_Flutter",
+                "arn:aws:codecommit:ap-south-1:411571901235:Yaantrac_Mobile_App_Flutter",
+                "arn:aws:codecommit:ap-south-1:411571901235:Yaantrac-REST-API-SpringBoot",
+                "arn:aws:codecommit:ap-south-1:411571901235:yaantrac_job_scheduler",
+                "arn:aws:codecommit:ap-south-1:411571901235:khub_proxy_backend",
+                "arn:aws:codecommit:ap-south-1:411571901235:Yaantrac-Springboot-admin",
+                "arn:aws:codecommit:ap-south-1:411571901235:YaantracV2-Client-WebApp-React",
+                "arn:aws:codecommit:ap-south-1:411571901235:Yaantrac-Client-WebApp-Admin-React",
+                "arn:aws:codecommit:ap-south-1:411571901235:Rakaz-Dev-WebApp-React",
+                "arn:aws:codecommit:ap-south-1:411571901235:Dev_report_service"
+            ],
+            "Condition": {
+                "StringLikeIfExists": {
+                    "codecommit:References": [
+                        "refs/heads/master",
+                        "refs/heads/release",
+                        "refs/heads/release/*",
+                        "refs/heads/develop",
+                        "refs/heads/develop/development"
+                    ]
+                },
+                "Null": {
+                    "codecommit:References": "false"
+                }
+            }
+        },
+        {
+            "Effect": "Deny",
+            "Action": [
+                "codecommit:CreateApprovalRuleTemplate",
+                "codecommit:DeleteApprovalRuleTemplate",
+                "codecommit:UpdateApprovalRuleTemplateName",
+                "codecommit:UpdateApprovalRuleTemplateContent",
+                "codecommit:UpdateApprovalRuleTemplateDescription",
+                "codecommit:ListApprovalRuleTemplates",
+                "codecommit:GetApprovalRuleTemplate",
+                "codecommit:ListAssociatedApprovalRuleTemplatesForRepository",
+                "codecommit:CreatePullRequestApprovalRule",
+                "codecommit:DeletePullRequestApprovalRule",
+                "codecommit:UpdatePullRequestApprovalRuleContent"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
